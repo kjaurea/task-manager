@@ -1,12 +1,15 @@
 from task import Task
 from to_do_list import ToDoList
 from datetime import *
+import tkinter as tk
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
 if __name__ == '__main__':
+    window = tk.Tk()
+
     sample_task = Task(title="Closet Case", goaldate=date(2024, 1, 18), goaltime=time(17, 30),
                        description="Clean the dang closet")
 
@@ -21,6 +24,7 @@ if __name__ == '__main__':
     newlist.print_priority_list()
     print("\n")
     sample_task.print_attribute("description")
+
 
 # create task manager
 # create a class for tasks, in its own file
