@@ -8,8 +8,6 @@ import tkinter as tk
 
 
 if __name__ == '__main__':
-    window = tk.Tk()
-
     sample_task = Task(title="Closet Case", goaldate=date(2024, 1, 18), goaltime=time(17, 30),
                        description="Clean the dang closet")
 
@@ -24,7 +22,6 @@ if __name__ == '__main__':
     newlist.print_priority_list()
     print("\n")
     sample_task.print_attribute("description")
-
 
 # create task manager
 # create a class for tasks, in its own file
