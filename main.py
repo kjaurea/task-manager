@@ -1,6 +1,7 @@
 from task import Task
 from to_do_list import ToDoList
 from datetime import *
+from manager_gui import ManagerGUI
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -20,6 +21,8 @@ if __name__ == '__main__':
     newlist.add_task(sample_task3)
     print("\n")
     newlist.print_priority_list()
+
+    window = ManagerGUI()
 
 # create task manager
 # create a class for tasks, in its own file
