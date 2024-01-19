@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-import tkcalendar
+from tktimepicker import AnalogPicker, AnalogThemes
 from tkcalendar import Calendar, DateEntry
 import customtkinter as ctk
 
@@ -13,7 +13,7 @@ class ManagerGUI:
 
         # code for window title and dimensions
         self.window.title("Kevin's To-Do List")
-        self.window.geometry("400x300")
+        self.window.geometry("400x600")
 
         # code for application title text and instructions
         self.app_title = ctk.CTkLabel(self.window, text="To-Do List Manager", font=("Calibri", 20))
@@ -34,13 +34,17 @@ class ManagerGUI:
         self.goal_date_calendar.grid(row=4, column=1, columnspan=2)
 
         # code for third input field and corresponding label
+        self.goal_time_label = ctk.CTkLabel(self.window, text="Goal Time")
+        self.goal_time_label.grid(row=5, column=0, padx=10, pady=10)
+        self.goal_time_picker = AnalogPicker(self.window)
+        self.goal_time_picker.grid(row=5, column=1, columnspan=2)
 
         # code for fourth input field and corresponding label
 
 
         # code for submission button
         self.submit_button = ctk.CTkButton(self.window, text="Add to list", command=self.submit_button_callback)
-        self.submit_button.grid(row=5, column=2)
+        self.submit_button.grid(row=6, column=2)
 
         # mainloop() is needed at end to show actual window. Code above mainloop is executed before opening window
         self.window.mainloop()
