@@ -17,15 +17,15 @@ class ManagerGUI:
 
         # code for application title text and instructions
         self.app_title = ctk.CTkLabel(self.window, text="To-Do List Manager", font=("Calibri", 20))
-        self.app_title.grid(row=0, column=1, columnspan=2)
+        self.app_title.grid(row=0, column=1, columnspan=3)
         self.app_instructions = ctk.CTkLabel(self.window, text="Enter task details and click submit", font=("Calibri", 14))
-        self.app_instructions.grid(row=1, column=1, columnspan=2)
+        self.app_instructions.grid(row=1, column=1, columnspan=3)
 
         # code for first input field and corresponding label
         self.task_name_label = ctk.CTkLabel(self.window, text="Task Name")
         self.task_name_label.grid(row=3, column=0, padx=10, pady=10)
-        self.task_name_field = ctk.CTkEntry(self.window)
-        self.task_name_field.grid(row=3, column=1, columnspan=2)
+        self.task_name_field = ctk.CTkEntry(self.window, width=250)
+        self.task_name_field.grid(row=3, column=1, columnspan=3)
 
         # code for second input field and corresponding label
         self.goal_date_label = ctk.CTkLabel(self.window, text="Goal Date")
@@ -36,15 +36,24 @@ class ManagerGUI:
         # code for third input field and corresponding label
         self.goal_time_label = ctk.CTkLabel(self.window, text="Goal Time")
         self.goal_time_label.grid(row=5, column=0, padx=10, pady=10)
-        self.goal_time_picker = AnalogPicker(self.window)
-        self.goal_time_picker.grid(row=5, column=1, columnspan=2)
+        self.goal_time_hour = ttk.Combobox(values=[1,2,3,4,5,6,7,8,9,10,11,12], width=5, font=("Calibri", 14))
+        self.goal_time_hour.grid(row=5, column=1)
+        self.goal_time_minute = ttk.Combobox(values=[00, 15, 30, 45], width=6, font=("Calibri", 14))
+        self.goal_time_minute.grid(row=5, column=2)
+        self.goal_ampm_frame = ctk.CTkFrame(self.window, width=20, height=10)
+        self.goal_ampm_frame.grid(row=5, column=3)
+        self.goal_time_am = ctk.CTkRadioButton(self.goal_ampm_frame, text="A.M.", value="am")
+        self.goal_time_am.grid(row=0, column=0)
+        self.goal_time_pm = ctk.CTkRadioButton(self.goal_ampm_frame, text="P.M.", value="pm")
+        self.goal_time_pm.grid(row=1, column=0)
+
 
         # code for fourth input field and corresponding label
 
 
         # code for submission button
         self.submit_button = ctk.CTkButton(self.window, text="Add to list", command=self.submit_button_callback)
-        self.submit_button.grid(row=6, column=2)
+        self.submit_button.grid(row=6, column=1, columnspan=3)
 
         # mainloop() is needed at end to show actual window. Code above mainloop is executed before opening window
         self.window.mainloop()
