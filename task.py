@@ -5,11 +5,11 @@ from datetime import *
 class Task:
 
     # constructor (includes dtvalue used for priority)
-    def __init__(self, title, goaldate, goaltime, description):
+    def __init__(self, title, goaldate, goaltime, dtvalue, description):
         self.title = title
         self.goaldate = goaldate
         self.goaltime = goaltime
-        self.dtvalue = datetime.combine(goaldate, goaltime)
+        self.dtvalue = dtvalue
         self.description = description
 
     def __repr__(self):

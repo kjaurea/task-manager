@@ -4,7 +4,9 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import scrolledtext
 
-from datetime import *
+import datetime as dt
+from task import Task
+from to_do_list import ToDoList
 from tkcalendar import Calendar, DateEntry
 import customtkinter as ctk
 from customtkinter import StringVar
@@ -38,7 +40,6 @@ class ManagerGUI:
                                             font=("Calibri", 14))
         self.goal_date_calendar.grid(row=4, column=1, columnspan=2)
         self.goal_date_calendar.grid(row=4, column=1, columnspan=2)
-        # TODO: fix the date thing...no customTKinter version????
 
         # code for third input field and corresponding label (Goal Time)
         self.goal_time_label = ctk.CTkLabel(self.window, text="Goal Time")
@@ -63,7 +64,7 @@ class ManagerGUI:
                                                border_width_unchecked=3, border_width_checked=4, text="P.M.",
                                                value="pm", font=("Calibri", 12))
         self.goal_time_pm.pack(pady=(0, 2), padx=4)
-        self.radio_var.set("am") #TODO: need to set am as default? It keeps thinking PM selected....
+        self.radio_var.set("am") # TODO: need to set am as default? It keeps thinking PM selected....
 
         # code for fourth input field and corresponding label (Description)
         self.task_desc_label = ctk.CTkLabel(self.window, text="Task Description")
@@ -76,27 +77,33 @@ class ManagerGUI:
         self.submit_button = ctk.CTkButton(self.window, text="Add Task", command=self.submit_button_callback)
         self.submit_button.grid(row=7, column=1, columnspan=2, pady=10)
 
+        # code to instantiate task list upon starting gui
+        self.task_list = ToDoList()
+
         # mainloop() is needed at end to show actual window. Code above mainloop is executed before opening window
         self.window.mainloop()
 
     def submit_button_callback(self):
         new_task_name = self.task_name_field.get()
         new_task_date = self.goal_date_calendar.get()
-        # new_task_date = datetime.strptime(self.goal_date_calendar.get(), '%m/%d/%Y').date() #TODO: doesn't work. Datepicker already returns date type???
-        new_task_desc = self.task_desc_field.get(1.0,
-                                                 "end-1c")  # TODO: finish converting datetime date and datetime time...
+        new_task_desc = self.task_desc_field.get(1.0, "end-1c")
         new_task_hour = int(self.goal_time_hour.get())
-        if self.goal_time_pm:
-            print("PM selected")
+        if self.radio_var.get() == "pm":
             new_task_hour += 12
-            print(new_task_hour)
         new_task_minute = int(self.goal_time_minute.get())
-        new_task_time = time(hour=new_task_hour, minute=new_task_minute, second=0)
+        new_task_time = str(new_task_hour) + str(new_task_minute)
+        new_task_datetime = dt.datetime.strptime(f'{new_task_date} {new_task_hour}:{new_task_minute}:0', '%m/%d/%y %H:%M:%S')
 
+        # code below is just for checking
         print(new_task_name)
         print(new_task_date)
         print(new_task_desc)
-        print(new_task_time)
+        print(new_task_datetime)
+
+        new_task = Task(new_task_name, new_task_date, new_task_time, new_task_datetime, new_task_desc)
+        self.task_list.todolist.put(new_task)
+
+
 
     # def __init__(self):
     #     self.root = ctk.CTk()

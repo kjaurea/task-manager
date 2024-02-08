@@ -1,6 +1,6 @@
 from task import Task
 from to_do_list import ToDoList
-from datetime import *
+import datetime as dt
 from manager_gui import ManagerGUI
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -8,12 +8,12 @@ from manager_gui import ManagerGUI
 
 
 if __name__ == '__main__':
-    sample_task = Task(title="Closet Case", goaldate=date(2024, 1, 18), goaltime=time(17, 30),
-                       description="Clean the dang closet")
+    sample_task = Task(title="Closet Case", goaldate=dt.date(2024, 1, 18), goaltime=dt.time(17, 30), # TODO: fix these sample things
+                       dtvalue=dt.datetime(2024, 2, 24, 7, 15, 00), description="Clean the dang closet")
     # sample_task.print_attribute("dtvalue")
 
-    sample_task2 = Task("Make pasta", date(2024, 1, 17), time(17, 00), "Make butternut pasta for dinner")
-    sample_task3 = Task("Play Grounded", date(2024, 1, 17), time(21, 00), "Kill more stinkbugs")
+    sample_task2 = Task("Make pasta", dt.date(2024, 1, 17), dt.time(17, 00), dt.datetime(2024, 2, 24, 7, 15, 00), "Make butternut pasta for dinner")
+    sample_task3 = Task("Play Grounded", dt.date(2024, 1, 17), dt.time(21, 00), dt.datetime(2024, 4, 24, 8, 30, 00), "Kill more stinkbugs")
 
     newlist = ToDoList()
     newlist.add_task(sample_task)
